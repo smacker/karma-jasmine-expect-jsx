@@ -1,6 +1,6 @@
 {
   "name": "karma-jasmine-expect-jsx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Karma plugin. Adds toEqualJSX matcher for the Jasmine BDD JavaScript testing library.",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
   "homepage": "https://github.com/smacker/karma-jasmine-expect-jsx#readme",
   "dependencies": {
     "chalk": "^1.1.1",
-    "jasmine-expect-jsx": "^1.0.0"
+    "jasmine-expect-jsx": "^1.0.3"
   }
 }
