@@ -1,7 +1,7 @@
 'use strict';
 
 var chalk = require('chalk');
-var ctx = new chalk.constructor({enabled: true});
+var ctx = new chalk.constructor({ enabled: true });
 
 function highlight(message) {
   var parts = message.split('\n');
@@ -33,9 +33,8 @@ function JasmineExpectJSXReporter(baseReporterDecorator, config) {
   // Replace original message with highlighted one
   var originalSpecFailure = self.specFailure;
 
-  self.specFailure = function (browser, result) {
-
-    result.log = result.log.map(function (message) {
+  self.specFailure = function(browser, result) {
+    result.log = result.log.map(function(message) {
       return highlight(message);
     });
 
@@ -55,18 +54,19 @@ function JasmineExpectJSXReporter(baseReporterDecorator, config) {
   // it is an utility reporter by doing nothing on browser log,
   // unless it's alone in the "reporters" option and base reporter is used.
   if (hasTrailingReporters) {
-    self.writeCommonMsg = function () {};
+    self.writeCommonMsg = function() {};
   }
 }
 
 function JasmineExpectJSXFramework(files) {
-
   function insertAfter(array, index, item) {
     array.splice(index + 1, 0, item);
   }
 
   function isJasmine(file) {
-    return file.pattern.search(/karma\-jasmine(\/|\\)lib(\/|\\)adapter\.js/) !== -1;
+    return (
+      file.pattern.search(/karma\-jasmine(\/|\\)lib(\/|\\)adapter\.js/) !== -1
+    );
   }
 
   function indexOfJasmine(files) {
@@ -82,15 +82,16 @@ function JasmineExpectJSXFramework(files) {
 
   if (index !== -1) {
     files.splice(index + 2, 0, {
-      pattern: require.resolve('jasmine-expect-jsx'),
+      pattern: require.resolve('jasmine-expect-jsx/dist/jasmine-expect-jsx.js'),
       included: true,
       served: true,
       watched: false
     });
   } else {
-    throw new Error('"jasmine" needs to appear before "jasmine-expect-jsx" in the "frameworks" array of your Karma configuration.');
+    throw new Error(
+      '"jasmine" needs to appear before "jasmine-expect-jsx" in the "frameworks" array of your Karma configuration.'
+    );
   }
-
 }
 
 JasmineExpectJSXFramework.$inject = ['config.files'];
